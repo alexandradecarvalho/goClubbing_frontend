@@ -38,15 +38,7 @@ export class DashboardHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.verifySession();
-    if(this.cookieService.get("goclubbingLoginCookie") != ""){
-      this.getEvents();
-      this.getAds()
-      this.getComments();
-      this.getMyBusiness(this.thisBusiness);
-    } else{
-      this.router.navigate(["/login"]);
-    }
+
   }
 
   verifySession() : any {
