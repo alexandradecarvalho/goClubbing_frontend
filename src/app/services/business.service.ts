@@ -13,9 +13,9 @@ import {BusinessType} from "../BusinessType";
   providedIn: 'root'
 })
 export class BusinessService {
-  private baseUrl = "http://mike19.pythonanywhere.com/";
-  private photosBaseUrl = "http://mike19.pythonanywhere.com/api/business_photos/";
-  private typesBaseUrl = "http://mike19.pythonanywhere.com/api/business/types";
+  private baseUrl = "https://mike19.pythonanywhere.com/";
+  private photosBaseUrl = "https://mike19.pythonanywhere.com/api/business_photos/";
+  private typesBaseUrl = "https://mike19.pythonanywhere.com/api/business/types";
 
   constructor(private http: HttpClient, private cookieService : CookieService) {
 
@@ -54,7 +54,7 @@ export class BusinessService {
     }
     return this.http.delete<Event>(url, httpOptions);
   }
-  
+
   getBusinessPhotos(id:number):Observable<BusinessPhotos[]>{
     const url = this.photosBaseUrl+id;
     return this.http.get<BusinessPhotos[]>(url);

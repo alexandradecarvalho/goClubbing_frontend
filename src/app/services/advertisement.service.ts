@@ -9,7 +9,7 @@ import {CookieService} from "ngx-cookie-service";
   providedIn: 'root'
 })
 export class AdvertisementService {
-  private baseURL = 'http://mike19.pythonanywhere.com/'
+  private baseURL = 'https://mike19.pythonanywhere.com/'
   constructor(private http : HttpClient, private cookieService : CookieService) { }
 
   getAdvertisement(id : number) : Observable<Ad[]>{

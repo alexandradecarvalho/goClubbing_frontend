@@ -10,7 +10,7 @@ import {EventPhotos} from "../EventPhotos";
   providedIn: 'root'
 })
 export class EventService {
-  private baseURL = 'http://mike19.pythonanywhere.com/'
+  private baseURL = 'https://mike19.pythonanywhere.com/'
   constructor(private http : HttpClient, private cookieService : CookieService) { }
 
   getEvent(id : number) : Observable<Event[]>{

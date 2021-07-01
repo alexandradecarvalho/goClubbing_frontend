@@ -9,8 +9,8 @@ import {CookieService} from "ngx-cookie-service";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private baseUrlLogin = "http://mike19.pythonanywhere.com/api/login/";
-  private baseUrlSignup = "http://mike19.pythonanywhere.com/api/create/business";
+  private baseUrlLogin = "https://mike19.pythonanywhere.com/api/login/";
+  private baseUrlSignup = "https://mike19.pythonanywhere.com/api/create/business";
   constructor(private http: HttpClient, private cookieService : CookieService) { }
 
   login(username:string, password:string):Observable<LoginToken>{
@@ -31,7 +31,7 @@ export class AuthenticationService {
   }
 
   verify(id : number) : Observable<JSON>{
-    const url = "http://mike19.pythonanywhere.com/api/verify/" + id;
+    const url = "https://mike19.pythonanywhere.com/api/verify/" + id;
     let httpOptions = {
       headers : new HttpHeaders({'Content-Type': 'application/json', 'Authorization':"Token " + this.cookieService.get("goclubbingLoginCookie")})
     }

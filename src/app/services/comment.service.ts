@@ -8,7 +8,7 @@ import {CookieService} from "ngx-cookie-service";
   providedIn: 'root'
 })
 export class CommentService {
-  private baseURL = 'http://mike19.pythonanywhere.com/'
+  private baseURL = 'https://mike19.pythonanywhere.com/'
   constructor(private http : HttpClient, private cookieService : CookieService) { }
 
   getComment(id : number) : Observable<Comment[]>{
