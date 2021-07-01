@@ -1,0 +1,24 @@
+<aside class="sidenav" style="float: left; width: 20vw; height: 100vh">
+    <div class="nav-top-section">
+      <div class="container_logo_title">
+        <img src="assets/img/logo.png"/>
+      </div>
+    </div>
+    <div class="menus">
+      <ul class="menus-items">
+        <a routerLink="/dashboard"><li class="item">Home</li></a>
+        <a routerLink="/dashboard/events"><li class="item">Events</li></a>
+        <a routerLink="/dashboard/ads" ><li class="item">Advertisements</li></a>
+        <a routerLink="/dashboard/comments" ><li class="item">Comments</li></a>
+        <a routerLink="/dashboard/profile" ><li class="item">Profile</li></a>
+      </ul>
+    </div>
+    <div class="nav-bottom-section bottom-menu">
+      <ul class="bottom-menu">
+        <form id="logoutForm" action="/logout/" method="get" class="form-inline my-2 my-lg-0">
+          <a class="exit-btn" (click)="exit()"><li class="exit">Exit</li></a>
+        </form>
+
+      </ul>
+    </div>
+  </aside>

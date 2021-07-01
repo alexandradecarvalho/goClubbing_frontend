@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</head>
+<body>
+<app-sidebar></app-sidebar>
+<div class="home-container" style="width: 80vw">
+  <div class="home-title" style="background: none">
+    <h1>Home</h1>
+  </div>
+  <div class="events">
+    <div class="title">
+      <h1 style="float:left;">Events </h1>
+      <a style="float:right; color: white" routerLink="/dashboard/newevent" ><i class="mysmalls fa fa-plus"></i></a>
+    </div>
+    <div class="events-content" >
+      <div class="pub" *ngFor="let event of events">
+        <div>
+          <p class="fa" style="font-weight: bold">{{ event.name }}</p>
+          <a [routerLink]="['/dashboard/event', event.id]"><i style="color:black;" class="fa fa-pencil"></i></a>
+          <p class="grey">{{ event.location }}</p>
+          <p class="grey">{{ event.datetime }}</p>
+          <p style="text-align: center"><i class="fa fa-check"></i>278</p>
+        </div>
+      </div>
+
+    </div>
+    <img class="background-image" src="assets/img/DashBoardFundo.png"/>
+  </div>
+  <div class="pubs">
+    <div class="title">
+      <h1 style="float: left">Ads</h1>
+      <a style="float:right; color: white" routerLink="/dashboard/newad" ><i class="mysmalls fa fa-plus"></i></a>
+    </div>
+    <div class="pubs-content" >
+      <div class="pub" *ngFor="let ad of ads">
+        <div>
+          <p class="fa" style="font-weight: bold">{{ getEventFromId(ad.event).name}} Add</p>
+          <a [routerLink]="['/dashboard/ad', ad.id]"><i style="color: black;" class="fa fa-pencil"></i></a>
+          <p class="grey">{{ ad.expire }}</p>
+          <p class="grey">{{ ad.body }}</p>
+          <p style="text-align: center"><i class="fa fa-heart"></i> 278</p>
+        </div>
+        </div>
+    </div>
+    <img class="background-image" src="assets/img/DashBoardFundo3.png"/>
+  </div>
+  <div class="profiles">
+    <div class="title">
+      <h1 style="display: inline-block">Profile</h1>
+      <a class="edit-button" routerLink="/dashboard/profile"><i style="float:right; margin-right: 2vw; font-size: 3.6vh" class="fa fa-pencil"></i></a>
+    </div>
+    <div class="profile-content">
+      <div class="profile">
+        <p class="prof-text">{{ profile.name }} | {{ profile.type }}</p>
+        <p class="prof-text">{{ profile.address }}, {{ profile.location }}</p>
+        <p class="prof-text">{{ profile.contact_email }} | {{ profile.contact_phone }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="comments">
+    <div class="title">
+      <h1>Comments</h1>
+    </div>
+    <div class="comments-content" >
+      <div class="comment" *ngFor="let comment of comments">
+        <p style="font-weight: bold;margin-left: 4%; margin-top: 1vh">Comment in {{ getEventFromId(comment.event).name }} <a (click)="delete(comment)"><i style="color:black; float:right; margin-right: 3vw; padding-top: 1vh;" class="fa fa-trash"></i></a></p>
+        <p style="margin-left: 4%; margin-top: -2vh;">
+          <i *ngIf="comment.classification == 1 || comment.classification > 1" class="fa fa-star"></i>
+          <i *ngIf="comment.classification == 2 || comment.classification > 2" class="fa fa-star"></i>
+          <i *ngIf="comment.classification == 3 || comment.classification > 3" class="fa fa-star"></i>
+          <i *ngIf="comment.classification == 4 || comment.classification > 4" class="fa fa-star"></i>
+          <i *ngIf="comment.classification == 5 || comment.classification > 5" class="fa fa-star"></i>
+        </p>
+        <p class="grey" style="margin-top:-3vh; margin-left: 4%">{{ comment.body}}</p>
+      </div>
+    </div>
+    <img class="background-image" src="assets/img/DashBoardFundo2.png"/>
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

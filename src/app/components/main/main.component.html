@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="navbar" id="navbar">
+    <div class="navbarLogo"><a href="/"><img src="/assets/img/logo.png"/></a></div>
+    <div class="filterContainer">
+        <a (click)="showFilterModal()">Filter</a>
+    </div>
+    <div class="searchBoxInputContainer">
+      <input id="textbox" type="text" placeholder="Search for Places by name, location..." name="query" (keyup)="setLocation($event)" /><button id="button" type="submit" class="findButton" (click)="filter()">Find events</button>
+    </div>
+  </div>
+  <div class="content">
+    <div id="mymap" class="mapdiv" (click)="showBusinessModal(false);"></div>
+
+    <div *ngIf="modalEventOpen" id="modal" class="modal">
+      <div class="info">
+        <div class="infoPic">
+          <img src="http://mike19.pythonanywhere.com{{ business.profilePhoto }}"/>
+        </div>
+        <div class="infoText">
+          <div class="infoTextName"><b>{{ business.name }}</b></div>
+          <div class="infoTextName">{{ business.type }}</div>
+        </div>
+      </div>
+      <div class="modalImages" *ngFor="let image of business_photos">
+        <img src="data:image/png;base64,{{ image }}"/>
+      </div>
+      <div class="ModalTitle">
+        Events:
+      </div>
+      <div class="modalEvents" *ngFor=" let e of eventss">
+        <div class="modalEvent">
+          <div class="modalEventImages" *ngFor="let im of event_photos[e.id]"><!--  -->
+            <img src="data:image/png;base64,{{ im }}"/>
+          </div>
+          <div class="modalEventTitle">
+            {{ e.name }} ({{ e.min_age }}+)
+          </div>
+          <div class="modalEventTitle">
+            <img src="../../../assets/img/schedule.png"/>{{ e.datetime }}
+          </div>
+          <div class="modalEventTitle">
+            <img src="../../../assets/img/location.png"/>{{ e.location }}
+          </div>
+          <div class="modalEventTitle">
+            <img src="../../../assets/img/theme.png"/>{{ e.theme }}
+          </div>
+          <div class="modalEventTitle">
+            <img src="../../../assets/img/dress-code.png"/>{{ e.dress_code }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="modalFilterOpen" id="modalFilter" class="modal">
+      <h1 id="filterTitle">Filter</h1>
+      <form action="." method="post">
+        <div class="formLine">
+          <label>Date</label>
+          <input type="date" (change)="setDate($event)" />
+        </div>
+        <div class="formLine">
+          <label>Location</label>
+          <input type="text" (keyup)="setLocation($event)"/>
+        </div>
+        <div class="formLine">
+          <label>Event Type</label>
+          <select (change)="setType($event)">
+            <option>-</option>
+            <option *ngFor="let et of filters_event_types" value="{{et.name}}">{{et.name}}</option>
+          </select>
+        </div>
+        <div class="formLine">
+          <label>Theme</label>
+          <input type="text" (keyup)="setTheme($event)"/>
+        </div>
+        <div class="formLine">
+          <label>Min. Age</label>
+          <input type="number" (keyup)="setAge($event)"/>
+        </div>
+        <div class="formLine">
+          <label>Business Name</label>
+          <input type="text" (keyup)="setBusiness($event)"/>
+        </div>
+        <div class="formLine">
+          <label>Event Name</label>
+          <input type="text" (keyup)="setName($event)"/>
+        </div>
+        <div class="formLine">
+          <label>Business Type</label>
+          <select (change)="setBusinessType($event)">
+            <option>-</option>
+            <option *ngFor="let bt of filters_business_types" value="{{bt.type}}">{{bt.type}}</option>
+          </select>
+        </div>
+        <button id="filterButton" type="button" (click)="filter()">Search</button>
+      </form>
+    </div>
+
+    <div *ngIf="modalFilterResultOpen" id="modalFilteredItems" class="modal">
+      <h2 class="filterTitle">Events</h2>
+      <div *ngFor="let e of filtered_events">
+        <div class="FilteredEvent" (click)="getBusiness(e.business)">
+          <div class="FilteredEventBagde">
+            Event
+          </div>
+          <div class="FilteredEventInfo">
+            <div><b>{{ e.name }}</b></div>
+            <div>{{ e.location }}</div>
+            <div>{{ e.theme }}</div>
+            <div>({{ e.min_age }}+)</div>
+          </div>
+        </div>
+      </div>
+      <h2 class="filterTitle">Business</h2>
+      <div *ngFor="let b of filtered_businesses">
+        <div class="FilteredBusiness" (click)="getBusiness(b.id)">
+          <div class="FilteredBusinessBagde">
+            Business
+          </div>
+          <div class="FilteredBusinessInfo">
+            <div><b>{{ b.name }}</b></div>
+            <div>{{ b.location }}</div>
+            <div>{{ b.type }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />-->

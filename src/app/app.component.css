@@ -1,0 +1,9 @@
+@font-face {
+  src: url("/assets/font/Biko_Regular.ttf");
+  font-family: Biko;
+}
+
+*{
+  box-sizing: border-box;
+  font-family: Biko;
+}

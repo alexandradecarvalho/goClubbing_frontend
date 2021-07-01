@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="navbar">
+  <div class="navbarLogo" onclick="window.location.href='/'"><img src="/assets/img/logo.png"/></div>
+  <div></div>
+  <div class="navbarButton"> <a href="/login">Login</a> </div>
+</div>
+<div class="container">
+  <form action="." method="post" class="form-horizontal">
+    <div *ngIf="message" class="message_{{ message.type }}">{{ message.body }}</div>
+
+    <div class="row">
+      <div class="form-group-login">
+        <label for="nameTxt">Business name:</label>
+        <input type="text" id="nameTxt" placeholder="Name" (keyup)="setName($event)" />
+      </div>
+      <div class="form-group-login">
+        <label for="locationTxt">Business city:</label>
+        <input type="text" id="locationTxt" placeholder="City" (keyup)="setLocation($event)" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group-login">
+        <label for="typeTxt">Business type (ex: Bar):</label>
+        <input type="text" id="typeTxt" placeholder="Business type" (keyup)="setType($event)"/>
+      </div>
+      <div class="form-group-login">
+        <label for="companyTxt">Company name:</label>
+        <input type="text" id="companyTxt" placeholder="Company name" (keyup)="setCompanyName($event)"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group-login">
+        <label for="emailTxt">Company email:</label>
+        <input type="text" id="emailTxt" placeholder="Email" (keyup)="setContactEmail($event)"/>
+      </div>
+      <div class="form-group-login">
+        <label for="phoneTxt">Company phone:</label>
+        <input type="text" id="phoneTxt" placeholder="Phone" (keyup)="setContactPhone($event)"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group-login">
+        <label for="usernameSignupTxt">Username:</label>
+        <input type="text" id="usernameSignupTxt" placeholder="Username" (keyup)="setUsername($event)"/>
+      </div>
+      <div class="form-group-login">
+        <label for="passwordSignupTxt">Password:</label>
+        <input type="password" id="passwordSignupTxt" placeholder="Password" (keyup)="setPassword($event)"/>
+      </div>
+    </div>
+    <button class="findButton" type="button" (click)="signup()">Signup</button>
+  </form>
+</div>
+<script>
+  document.getElementsByClassName("message_error").style.width="820";
+  document.getElementsByClassName("message_success").style.width="820";
+</script>
+</body>
+</html>
